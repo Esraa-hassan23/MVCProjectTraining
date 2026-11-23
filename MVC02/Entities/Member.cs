@@ -1,0 +1,8 @@
+﻿namespace MVC02.Entities
+{
+    public class Member :GymUser
+    {
+        public string? Photo { get; set; }
+        public ICollection<MemberShip> MemberSubscriptions { get; set; } = new HashSet<MemberShip>();
+    }
+}
