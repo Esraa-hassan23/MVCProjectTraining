@@ -1,0 +1,17 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MVC02.Entities;
+
+namespace MVC02.Configurations
+{
+    public class MemberConfiguration :GymUserConfiguration<Member> ,IEntityTypeConfiguration<Member>
+    {
+        public new void Configure(EntityTypeBuilder<Member> builder)
+        {
+            builder.Property(m => m.CreatedAt).HasDefaultValueSql("GETDATE()").HasColumnName("JoinDate");
+
+            base.Configure(builder);
+         
+        }
+    }
+}

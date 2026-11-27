@@ -1,3 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using MVC02.Context;
+using MVC02.Interfaces;
+using MVC02.Repository;
+
 namespace MVC02
 {
     public class Program
@@ -9,7 +15,32 @@ namespace MVC02
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            //registration dbContext
+
+            builder.Services.AddDbContext<GymDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+            );
+
+            //builder.Services.AddDbContext<GymDbContext>(options =>
+            //options.UseSqlServer(builder.Configuration.GetSection("ConnectionStrings0")["DefaultConnection"])
+            //);
+
+          //  builder.Services.AddDbContext<GymDbContext>(options =>
+          //options.UseSqlServer(builder.Configuration["ConnectionStrings0 : DefaultConnection"]));
+            
+
+
+
+            //builder.Services.AddScoped<IPlanRepository, PlanRepository>();
+            builder.Services.AddKeyedScoped<IPlanRepository, PlanRepository>("planRepo");
+            builder.Services.AddKeyedScoped<IMemberShipRepository, MemberShipRepository>("MembershipRepo");
+
+
+
+
             var app = builder.Build();
+
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -33,4 +64,6 @@ namespace MVC02
             app.Run();
         }
     }
+
+
 }
