@@ -7,6 +7,9 @@ namespace MVC02.Configurations
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Plan> builder)
         {
+
+            builder.Property(m => m.CreatedAt).HasDefaultValueSql("GETDATE()").HasColumnName("JoinDate");
+
             builder.ToTable(t => t.HasCheckConstraint("CK_Plan_DurationDays", "DurationDays between 1 and 365"));
         }
     }

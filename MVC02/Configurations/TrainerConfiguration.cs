@@ -8,7 +8,7 @@ namespace MVC02.Configurations
     {
         public new void Configure(EntityTypeBuilder<Trainer> builder)
         {
-            builder.Property(t => t.CreatedAt).HasDefaultValueSql("GETDATE()").HasColumnName("JoinDate");
+            builder.Property(t => t.CreatedAt).HasDefaultValueSql("GETDATE()").HasColumnName("HireDate");
 
             base.Configure(builder);
         }

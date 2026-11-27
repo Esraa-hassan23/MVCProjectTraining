@@ -4,8 +4,7 @@ namespace MVC02.Entities
 {
     public class Trainer:GymUser
     {
-        public DateTime HireDate { get; set; }
-        public string Speciality { get; set; } = default!;
+        public Specialities Speciality { get; set; }
 
         public ICollection<Session> Sessions { get; set; } = new HashSet<Session>();
 
